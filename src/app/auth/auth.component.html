@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <h1>{{ isLogin ? "Log In" : "Sign Up" }}</h1>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="!isLoading">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" required email ngModel name="email" #email="ngModel" />
+            <!-- Validation Alert for Email -->
+            <div *ngIf="(form.invalid && form.submitted) || (email.invalid && (email.dirty || email.touched))">
+                <div class="text-danger" *ngIf="email.errors?.required">email is empty</div>
+                <div class="text-danger" *ngIf="email.errors?.email">wrong email format</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" ngModel name="password" required minlength="6" #password="ngModel" />
+            <!-- Validation Alert for Password -->
+            <div *ngIf="(form.invalid && form.submitted) || (password.invalid && (password.dirty || password.touched))">
+                <div class="text-danger" *ngIf="password.errors?.required">Password is empty</div>
+                <div class="text-danger" *ngIf="password.errors?.minlength">Password is 6 chars at least</div>
+            </div>
+        </div>
+        <div class="button-wrapper">
+            <button type="submit" class="btn custom-btn" [disabled]="form.invalid">{{ isLogin ? "Log In" : "Sign Up" }} <i class="bi bi-door-open"></i></button>
+            <span class="switch" [routerLink]="[!isLogin ? '/login' : '/signup']">Switch to {{ !isLogin ? "Log In" : "Sign Up" }}</span>
+        </div>
+    </form>
+</div>

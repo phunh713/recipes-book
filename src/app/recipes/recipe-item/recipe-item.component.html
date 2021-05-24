@@ -1,0 +1,21 @@
+<div class="row d-flex recipe-item " routerLinkActive="active" [routerLink]="['/recipes', index]" queryParamsHandling="preserve" (click)="onClick()">
+    <div class="col-sm-5 p-0 recipe-image-container">
+        <img [src]="isImgLoaded ? recipe.imageUrl : imgPlaceholder" class="recipe-image" (load)="isImgLoaded = true"/>
+    </div>
+    <div class="col-sm-7">
+        <div class="recipe-body py-4">
+            <h5 class="recipe-name">{{ recipe.name }}</h5>
+            <p class="recipe-description">{{ recipe.description | limitChar: 60 }}</p>
+            <div class="row">
+                <div class="col-5 recipe-serving">
+                    <p class="">Serving</p>
+                    <i class="bi bi-person-fill" *ngFor="let item of recipe.serving | numToArray"></i>
+                </div>
+                <div class="col-7 recipe-time">
+                    <p class="">Cook Time</p>
+                    <span>{{ recipe.time.hour ? recipe.time.hour + "h" : ""}} {{recipe.time.min}}min</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

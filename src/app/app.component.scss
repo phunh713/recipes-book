@@ -1,0 +1,21 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/variables";
+
+
+.alert-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+
+
+@include media-breakpoint-down(sm) {
+    .alert-wrapper {
+        left: 50% !important;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+}

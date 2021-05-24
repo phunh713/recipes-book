@@ -1,0 +1,79 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../node_modules/bootstrap/scss/variables";
+
+.alert-wrapper {
+    transition: all ease 0.3s;
+
+    .alert-wrapper-item {
+        width: 350px;
+        margin-top: 20px;
+        background-color: #f8f9fe;
+        box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+        transition: all ease 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &::before {
+            content: "";
+            height: 7px;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: timerWidth 3s linear forwards;
+        }
+
+        p {
+            margin: 0;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        i {
+            &:hover {
+                cursor: pointer;
+            }
+
+            &::before {
+                font-size: 25px;
+            }
+        }
+    }
+
+    .success {
+        background-color: rgba(42, 171, 160, 0.8);
+        color: #fff;
+        &::before {
+            background-color: rgb(2, 146, 134);
+        }
+    }
+
+    .fail {
+        background-color: rgba(254, 118, 70, 0.8);
+        color: #fff;
+        &::before {
+            background-color: rgb(255, 68, 0);
+        }
+    }
+}
+
+@keyframes timerWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .alert-wrapper-item {
+        width: 100%!important;
+    }
+}

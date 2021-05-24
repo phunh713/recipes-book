@@ -1,0 +1,71 @@
+input.ng-invalid.ng-touched {
+    border-color: #ff9ca6;
+    box-shadow: 0 0 0.25rem rgb(220 53 69 / 55%);
+}
+
+label {
+    font-weight: bold;
+    padding-left: 10px;
+    border-left: 5px solid #febd2e;
+    margin: 30px 0 15px;
+}
+
+.custom-btn {
+    background-color: #febd2e;
+    border: none;
+    vertical-align: super;
+    transition: all ease 0.3s;
+    font-weight: bold;
+
+    i {
+        font-size: 18px;
+        vertical-align: middle;
+
+        &::before {
+            font-size: 20px;
+        }
+    }
+
+    &:hover {
+        box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+        transform: translateY(-2px);
+    }
+}
+
+.close-btn {
+    background-color: #d63e4d;
+    color: #fff;
+    transition: all ease 0.3s;
+    &:hover {
+        box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+        transform: translateY(-2px);
+    }
+}
+
+.ingredient-input-group {
+    position: relative;
+
+    .suggest-name {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        background-color: #fff;
+        top: 42px;
+        box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+        display: none;
+
+        p {
+            margin: 10px 0 0 0;
+            padding: 5px 15px;
+            font-weight: normal;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .show {
+        display: block;
+    }
+}

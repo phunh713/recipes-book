@@ -1,0 +1,86 @@
+.form-wrapper {
+    padding: 30px;
+    background-color: #f8f9fe;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    border-radius: 15px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+
+    h2 {
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    form {
+        label {
+            font-weight: bold;
+            padding-left: 10px;
+            border-left: 5px solid #febd2e;
+            margin: 30px 0 15px;
+        }
+
+        input,
+        textarea,
+        select {
+            box-shadow: rgb(0 0 0 / 25%) 0px 1px 4px;
+            border: none;
+        }
+    }
+
+    .recipe-image-wrapper {
+        position: relative;
+
+        input[disabled] {
+            color: grey !important;
+            background-color: rgba(128,128,128,0.5) !important;
+        };
+
+        .recipe-image-preview {
+            z-index: 999;
+            position: absolute;
+            width: 100%;
+            padding: 10px;
+            border: 15px;
+            background-color: #f8f9fe;
+            box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    input.ng-touched.ng-invalid,
+    select.ng-touched.ng-invalid,
+    textarea.ng-touched.ng-invalid {
+        background-color: rgba(255, 167, 167, 0.5) !important;
+    }
+
+    .custom-btn {
+        background-color: #febd2e;
+        border: none;
+        vertical-align: super;
+        transition: all ease 0.3s;
+        font-weight: bold;
+
+        i {
+            font-size: 18px;
+            vertical-align: middle;
+
+            &::before {
+                font-size: 20px;
+            }
+        }
+
+        &:hover {
+            box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+            transform: translateY(-2px);
+        }
+    }
+
+    .close-btn {
+        background-color: #d63e4d;
+        color: #fff;
+    }
+}

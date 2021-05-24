@@ -1,0 +1,6 @@
+<div class="alert-wrapper" *ngIf="isShow" @alertShowParent>
+    <div class="alert-wrapper-item" *ngFor="let item of array; let i = index" [ngClass]="{'success': item.success, 'fail': !item.success}" @alertShow>
+        <p>{{ item.message }}</p>
+        <i class="bi bi-x-circle" (click)="onClose(item.id)"></i>
+    </div>
+</div>

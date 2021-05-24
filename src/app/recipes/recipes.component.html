@@ -1,0 +1,32 @@
+<div class="py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="header">
+                <h1>Recipes</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 d-flex  recipe-filters-wrapper">
+            <div class="recipe-filters">
+                <ng-container *ngFor="let filter of FiltersArray">
+                    <input type="radio" name="recipe-filter" [id]="filter" class="recipe-filter-input" [checked]="filter === isChecked" />
+                    <label [for]="filter" class="recipe-filter-label" (click)="onFilter(filter)"> {{ filter }} </label>
+                </ng-container>
+            
+                <button class="btn custom-btn" routerLink="/recipes/new" queryParamsHandling="preserve">Add New Recipe <i class="bi bi-folder-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="row position-relative">
+        <div class="col-lg-5">
+            <app-recipe-list></app-recipe-list>
+        </div>
+
+        <div class="col-lg-7 recipe-outlet-wrapper" [ngClass]="{ show: isDetailShow }">
+                <router-outlet></router-outlet>
+            
+        </div>
+    </div>
+</div>

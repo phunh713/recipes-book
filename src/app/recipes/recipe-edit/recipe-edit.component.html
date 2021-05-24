@@ -1,0 +1,91 @@
+<div class="form-wrapper">
+    <p *ngIf="isLoading">Loading</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm" *ngIf="!isLoading">
+        <h2 class="d-inline">
+            {{ editMode ? "Edit Recipe" : "New Recipe" }}
+        </h2>
+
+        <button type="submit" class="btn custom-btn" [ngClass]="{ 'btn-warning': editMode, 'btn-success': !editMode }" [disabled]="!recipeForm.valid">
+            {{ editMode ? "Update" : "Submit" }}
+            <i class="bi bi-cloud-upload"></i>
+        </button>
+        <button type="button" class="btn custom-btn close-btn ms-2" (click)="onCancel()">Cancel<i class="bi bi-x"></i></button>
+        <div class="mb-3 row">
+            <div class="col-6">
+                <label for="recipe-name" class="form-label">Recipe Name * </label>
+                <input type="text" class="form-control bg-light" id="recipe-name" formControlName="name" />
+            </div>
+            <div class="col-6">
+                <label for="recipe-category" class="form-label">Recipe Category *</label>
+                <select class="form-select bg-light" required id="recipe-category" formControlName="category">
+                    <option value="cakes">Cake</option>
+                    <option value="chicken">Chicken</option>
+                    <option value="pork">Pork</option>
+                    <option value="beef">Beef</option>
+                    <option value="seafood">Seafood</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3 recipe-image-wrapper">
+            <label for="recipe-image" class="form-label">Recipe Image URL *</label>
+            <div class="input-group">
+                <input type="text" class="form-control bg-light" id="recipe-image" formControlName="imageUrl" #imageUrl />
+                <button
+                    type="button"
+                    class="custom-btn btn"
+                    [disabled]="!imageUrl.value"
+                    (click)="onPreviewImg(imageUrl.value)"
+                    [ngClass]="{ 'close-btn': isImgShowed }"
+                >
+                    <i class="bi bi-eye" *ngIf="!isImgShowed"></i>
+                    <i class="bi bi-x" *ngIf="isImgShowed"></i>
+                </button>
+            </div>
+            <div class="recipe-image-preview" *ngIf="isImgShowed">
+                <img [src]="imagePreviewUrl" (error)="imagePreviewUrl = 'https://1080motion.com/wp-content/uploads/2018/06/NoImageFound.jpg.png'" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="recipe-description" class="form-label">Recipe Description *</label>
+            <textarea class="form-control bg-light" id="recipe-description" rows="6" formControlName="description"></textarea>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-6">
+                <label>Prepare Time *</label>
+                <div class="input-group" formGroupName="time">
+                    <input type="number" class="form-control bg-light" required formControlName="hour" placeholder="hour" min="0" />
+                    <input type="number" class="form-control bg-light" required formControlName="min" placeholder="min" min="1" />
+                </div>
+            </div>
+
+            <div class="col-3">
+                <label for="recipe-serving" class="form-label">Serving *</label>
+                <input type="number" class="form-control bg-light" id="recipe-serving" formControlName="serving" min="1" />
+            </div>
+            <div class="col-3">
+                <label for="recipe-calo" class="form-label">Calories *</label>
+                <input type="number" class="form-control bg-light" id="recipe-calo" formControlName="calo" min="1" />
+            </div>
+        </div>
+        <div class="mb-3" formArrayName="ingredients">
+            <label>Recipe Ingredients</label>
+            <button type="button" class="btn custom-btn ms-3" (click)="addIngredient()" [disabled]="recipeIngredientsArray.invalid">
+                More <i class="bi bi-plus"></i>
+            </button>
+
+            <div class="input-group mt-3" *ngFor="let item of recipeIngredientsArray.controls; let i = index" [formGroupName]="i">
+                <input type="text" class="form-control bg-light" required formControlName="name" placeholder="name *" />
+                <input type="number" class="form-control bg-light" required formControlName="amount" placeholder="amount *" min="1" />
+                <!-- <input type="text" class="form-control bg-light" required  placeholder="unit" /> -->
+
+                <select class="form-select bg-light" formControlName="unit" required>
+                    <option value="g">g</option>
+                    <option value="ml">ml</option>
+                </select>
+                <button type="button" class="btn custom-btn close-btn" (click)="onRemoveIngredient(i)"><i class="bi bi-dash"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

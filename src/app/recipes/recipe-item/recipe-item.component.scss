@@ -1,0 +1,89 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../node_modules/bootstrap/scss/variables";
+
+.recipe-item {
+    overflow: hidden;
+    margin: 20px 0;
+    background-color: #f8f9fe;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    color: #2b2d42;
+    transition: all ease 0.3s;
+
+    &.active {
+        background-color: #febd2e;
+        color: #353025;
+        box-shadow: none;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent;
+            box-shadow: rgb(0 0 0 / 30%) 0px 2px 4px 0px inset !important;
+        }
+    }
+
+    &:hover {
+        .recipe-image-container img {
+                transform: scale(1.1);
+            }
+        }
+
+    .recipe-image-container {
+        overflow: hidden;
+        border-right: 10px solid #febd2e;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+    }
+
+    .recipe-body {
+        padding: 30px 0 30px 20px;
+
+        .recipe-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .recipe-description {
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .recipe-serving p,
+        .recipe-time p {
+            font-family: "Montserrat", sans-serif;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .recipe-time {
+            border-left: 2px solid #fed37e;
+            span {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .recipe-image-container {
+        border-right: none !important;
+        border-bottom: 10px solid #febd2e;
+        max-height: 220px;
+    }
+}

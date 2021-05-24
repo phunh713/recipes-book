@@ -1,0 +1,36 @@
+<div style="width: 600px; margin: 0 auto">
+    <div class="alert alert-danger" role="alert" *ngIf="form.invalid && form.submitted && !isInputing">Form is Invalid</div>
+    <div class="alert alert-success" role="alert" *ngIf="form.valid && form.submitted && !isInputing">Form is Submitted</div>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" required email ngModel name="email" #email="ngModel" [ngModelOptions]="{updateOn: 'blur'}"/>
+            <!-- Validation Alert for Email -->
+            <div *ngIf="(form.invalid && form.submitted) || (email.invalid && (email.dirty || email.touched))">
+                <div class="text-danger" *ngIf="email.errors?.required">email is empty</div>
+                <div class="text-danger" *ngIf="email.errors?.email">wrong email format</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="supscription" class="form-label">Supscriptions</label>
+            <select name="supscription" id="supscription" class="form-select" [ngModel]="'basic'" name="supscription" required >
+                <option value="basic">Basic</option>
+                <option value="pro">Professional</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" ngModel name="password" required minlength="6" #password="ngModel" [ngModelOptions]="{updateOn: 'blur'}"/>
+            <!-- Validation Alert for Password -->
+            <div *ngIf="(form.invalid && form.submitted) || (password.invalid && (password.dirty || password.touched))">
+                <div class="text-danger" *ngIf="password.errors?.required">Password is empty</div>
+                <div class="text-danger" *ngIf="password.errors?.minlength">Password is 6 chars at least</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

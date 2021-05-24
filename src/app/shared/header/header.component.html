@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <div class="logo-container">
+            <img src="../../../assets/images/logo.png" alt="logo" width="50" />
+            <a class="navbar-brand" routerLink="">Recipe Book</a>
+        </div>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            (click)="onClickNav()"
+            [ngClass]="{'rotate': isRotate}"
+        >
+            <i class="bi bi-three-dots-vertical"></i> 
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" appToggleListItem>
+            <div class="navbar-nav" style="width: 100%">
+                <a class="nav-link fw-bold" routerLink="recipes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLogin"
+                    >Recipes</a
+                >
+                <a class="nav-link fw-bold" routerLink="shopping-list" routerLinkActive="active" *ngIf="isLogin">Shopping List</a>
+                <!-- <div class="assignments">
+                    <a class="nav-link fw-bold" routerLink="assignments" routerLinkActive="active">Assignments</a>
+                    <ul class="assignments-wrapper">
+                        <li><a class="nav-link fw-bold" routerLink="/assignments/form-td">Form Template Driven</a></li>
+                        <li><a class="nav-link fw-bold" routerLink="/assignments/form-reactive">Form Reactive</a></li>
+                        <li><a class="nav-link fw-bold" routerLink="/assignments/pipe">Pipe</a></li>
+                    </ul>
+                </div> -->
+                <div class="auth ms-auto d-flex">
+                    <a class="nav-link fw-bold" routerLinkActive="active" *ngIf="isLogin" (click)="onLogOut()">Log Out</a>
+                    <a class="nav-link fw-bold" routerLink="login" routerLinkActive="active" *ngIf="!isLogin">Log In</a>
+                    <a class="nav-link fw-bold" routerLink="signup" routerLinkActive="active" *ngIf="!isLogin">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

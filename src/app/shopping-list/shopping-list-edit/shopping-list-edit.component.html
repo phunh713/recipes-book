@@ -1,0 +1,47 @@
+<div class="row my-3">
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="ingredient-name" class="form-label">Name</label>
+                <div class="input-group ingredient-input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="ingredient-name"
+                        ngModel
+                        name="ingredientName"
+                        required
+                        (focus)="onFocusName(name)"
+                        (blur)="onBlurName(name)"
+                        #name
+                    />
+                    <div class="suggest-name" [ngClass]="{ show: isSuggestNameShow }">
+                        <p class="suggest-name-item" *ngFor="let name of suggestNames" (click)="onSelectName(name)">{{ name }}</p>
+                    </div>
+                    <button type="button" class="btn custom-btn d-flex" (click)="onSearchName(name.value)">
+                        <span *ngIf="!isSearching"> search <i class="bi bi-search"></i></span>
+                        <app-three-quater-spinner *ngIf="isSearching"></app-three-quater-spinner>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="ingredient-amount" class="form-label">Amount</label>
+                <input class="form-control" id="ingredient-amount" ngModel name="ingredientAmount" required />
+            </div>
+            <div class="col-md-3">
+                <label for="ingredient-unit" class="form-label">Unit</label>
+                <!-- <input type="text" class="form-control" id="ingredient-unit" ngModel name="ingredientUnit" required /> -->
+                <select class="form-select" id="ingredient-unit" name="ingredientUnit" [ngModel]="options[0]" required>
+                    <option [value]="option" *ngFor="let option of options; let i = index">{{ option }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="my-2 d-flex">
+            <button type="submit" class="btn custom-btn me-2" *ngIf="!isEdit" [disabled]="form.invalid">Add</button>
+
+            <button type="submit" class="btn custom-btn me-2" *ngIf="isEdit" [disabled]="form.invalid">Update</button>
+
+            <button type="button" class="btn close-btn me-2" (click)="onClear()">Clear</button>
+        </div>
+    </form>
+</div>
